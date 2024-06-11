@@ -21,4 +21,8 @@ public interface IFacturaServices {
     public List<Factura> ObtenerRegistrosPaginados(int numeroPagina, int tamanoPagina, List<Factura> facturas);
 
     public Factura getFacturaById(int id);
+
+    public String generar_Codigo();
+
+    public String recursivo_char(String prefix, int index);
 }

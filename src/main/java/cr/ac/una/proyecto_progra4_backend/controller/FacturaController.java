@@ -36,6 +36,8 @@ public class FacturaController {
         response.setUltimaPagina(ultimaPagina);
         response.setPage(page);
         response.setPageSize(pageSize);
+        response.setNuevoCodigo(ifs.generar_Codigo());
+        
         System.out.println("=======================================");
         System.out.println();
         System.out.println("         Listar api");

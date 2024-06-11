@@ -10,6 +10,7 @@ public class FacturasResponse {
     private int page;
     private int pageSize;
     private int ultimaPagina;
+    private String nuevoCodigo;
     
     public int getUltimaPagina() {
         return ultimaPagina;
@@ -37,6 +38,12 @@ public class FacturasResponse {
     }
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
+    }
+    public String getNuevoCodigo() {
+        return nuevoCodigo;
+    }
+    public void setNuevoCodigo(String nuevoCodigo) {
+        this.nuevoCodigo = nuevoCodigo;
     }
     
 }

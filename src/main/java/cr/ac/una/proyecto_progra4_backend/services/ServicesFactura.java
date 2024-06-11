@@ -79,7 +79,6 @@ public class ServicesFactura implements IFacturaServices {
     @Override
     public boolean verificar_codigo(String codigo, int id, boolean edit) {
         List<Factura> lista = factRp.findAll();
-
         for (Factura f : lista) {
             if (f.getCodigo_factura().equals(codigo)) {
                 if (edit) {
@@ -117,4 +116,40 @@ public class ServicesFactura implements IFacturaServices {
             return null;
         }
     }
+
+    @Override
+    public String generar_Codigo() {
+        Factura f = factRp.findUltimaFactura();
+        String  nuevoCodigo = "AAAA-0001";
+        
+        if(f != null){
+            String ultimoCodigo = f.getCodigo_factura();
+            String[] partes = ultimoCodigo.split("-");
+            String prefix = partes[0];
+            int numero = Integer.parseInt(partes[1]);
+            if (numero == 9999) {
+                recursivo_char(prefix, 3);
+                numero = 0000;
+            }
+            nuevoCodigo = String.format("%s-%04d", prefix, numero + 1);
+            System.out.println(nuevoCodigo);
+        }
+        return nuevoCodigo;
+    }
+
+    @Override
+    public String recursivo_char(String prefix, int index) {
+        System.out.println("Prefix :"+prefix + " i :"+index);
+        char ultimoCaracter = prefix.charAt(index);
+        if (ultimoCaracter == 'Z') {
+            prefix = prefix.substring(0, index) + "A"+prefix.substring(index+1);
+            if(index > 0){
+                prefix = recursivo_char(prefix, index-1);
+            }
+        } else {
+            prefix = prefix.substring(0, index) + (char) (ultimoCaracter + 1)+prefix.substring(index+1);
+        }
+        return prefix;
+    }
+
 }
