@@ -29,24 +29,24 @@ public class ProveedorController {
     @Autowired
     private IProveedoresService servicePro;
 
-    @GetMapping("/listar")
+    @GetMapping("/listarProveedor")
     private List<Proveedor> proveedores() {
         return servicePro.getProveedores();
     }
 
-    @PostMapping("/registrar")
+    @PostMapping("/registrarProveedor")
     public ResponseEntity<String> crearProveedor(@RequestBody Proveedor proveedor) {
         String result = servicePro.guardar(proveedor);
         return ResponseEntity.ok(result);
     }
 
-    @PutMapping("/editar")
+    @PutMapping("/editarProveedor")
     public ResponseEntity<String> editarProveedor(@RequestBody Proveedor proveedor) {
         String result = servicePro.actualizarProveedor(proveedor);
         return ResponseEntity.ok(result);
     }
 
-    @DeleteMapping("/eliminar")
+    @DeleteMapping("/eliminarProveedor")
     public ResponseEntity<String> eliminarProveedor(@RequestParam("proveedor") int id) {
         String result = servicePro.eliminar(id);
         return ResponseEntity.ok(result);
