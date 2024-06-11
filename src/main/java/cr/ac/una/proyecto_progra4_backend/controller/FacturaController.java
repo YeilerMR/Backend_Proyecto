@@ -44,16 +44,37 @@ public class FacturaController {
 
     @PostMapping("/registrar")
     private ResponseEntity<String> insertar_factura(@RequestBody Factura factura){
+        System.out.println("=======================================");
+        System.out.println();
+        System.out.println("         Registrar api");
+        System.out.println();
+        System.out.println("========================================");
         return ResponseEntity.ok(ifs.Insertar_factura(factura));
     }
 
     @PutMapping("/editar")
     public ResponseEntity<String> editar_facturas(@RequestBody Factura factura){
+        System.out.println("=======================================");
+        System.out.println();
+        System.out.println("         Editar api");
+        System.out.println();
+        System.out.println("========================================");
         return  ResponseEntity.ok(ifs.Insertar_factura(factura));
     }
     @DeleteMapping("/eliminar")
-    public ResponseEntity<Boolean> eliminarProveedor(@RequestParam("factura") int id) {
-        return ResponseEntity.ok(ifs.Eliminar_factura(id));
+    public ResponseEntity<String> eliminarProveedor(@RequestParam("factura") int id) {
+        System.out.println("=======================================");
+        System.out.println();
+        System.out.println("         Eliminar api  "+id);
+        System.out.println();
+        System.out.println("========================================");
+
+        String delete = "delete";
+        boolean eliminado = ifs.Eliminar_factura(id);
+        if(!eliminado){
+            delete ="nodelete";
+        }
+        return ResponseEntity.ok(delete);
     }
 
    

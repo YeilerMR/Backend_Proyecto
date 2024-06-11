@@ -1,15 +1,20 @@
 package cr.ac.una.proyecto_progra4_backend.services;
 
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import cr.ac.una.proyecto_progra4_backend.domain.Factura;
 import cr.ac.una.proyecto_progra4_backend.jpa.FacturaRepository;
+import jakarta.persistence.PersistenceException;
+
 /**
  * @author UNA
  */
@@ -34,7 +39,7 @@ public class ServicesFactura implements IFacturaServices {
         } else {
             if (factRp.existsById(factura.getId_factura())) {
                 if (!verificar_codigo(factura.getCodigo_factura(), factura.getId_factura(), true)) {
-                    /*Factura aux =*/ factRp.save(factura);
+                    /* Factura aux = */ factRp.save(factura);
                     return "{\"success\": true, \"message\": \"¡Factura modificada exitosamente!\"}";
                 }
                 return "{\"success\": false, \"message\": \"¡El código ya se encuentra en uso!\"}";
@@ -50,8 +55,24 @@ public class ServicesFactura implements IFacturaServices {
 
     @Override
     public boolean Eliminar_factura(int id) {
-        factRp.deleteById(id);
-        return factRp.existsById(id);
+        try {
+            factRp.deleteById(id);
+            return true;
+        } catch (EmptyResultDataAccessException e) {
+            // Manejo del caso cuando no se encuentra la factura
+            System.out.println("No se encontró la factura con id: " + id);
+        } catch (DataIntegrityViolationException e) {
+            // Manejo de la violación de integridad referencial (foreign key constraint)
+            System.out.println("No se puede eliminar la factura debido a una restricción de integridad referencial: "
+                    + e.getMessage());
+        } catch (PersistenceException e) {
+            // Manejo general de otras excepciones de persistencia
+            System.out.println("Error de persistencia al eliminar la factura: " + e.getMessage());
+        } catch (Exception e) {
+            // Manejo de cualquier otra excepción
+            System.out.println("Error inesperado al eliminar la factura: " + e.getMessage());
+        }
+        return false;
     }
 
     @Override
@@ -71,7 +92,7 @@ public class ServicesFactura implements IFacturaServices {
         }
         return false;
     }
-    
+
     @Override
     public LinkedList<Factura> ObtenerRegistrosPaginados(int numeroPagina, int tamanoPagina, List<Factura> facturas) {
         LinkedList<Factura> registrosPagina = new LinkedList<>();
@@ -87,11 +108,11 @@ public class ServicesFactura implements IFacturaServices {
 
     @Override
     public Factura getFacturaById(int id) {
-        Optional<Factura> factura =factRp.findById(id);
-        if(factura.isPresent()){
+        Optional<Factura> factura = factRp.findById(id);
+        if (factura.isPresent()) {
             System.out.println("Obtuvo factura");
             return factura.get();
-        }else{
+        } else {
             return null;
         }
     }
