@@ -32,9 +32,8 @@ public class FacturaController {
         List<Factura> auxiliar = ifs.getFacturas();
         List<Factura> facturas = ifs.ObtenerRegistrosPaginados(page, pageSize, auxiliar);
         int ultimaPagina = (auxiliar != null) ? ((int) Math.ceil((double) auxiliar.size() / pageSize) - 1) : 0;
-
+        
         FacturasResponse response = new FacturasResponse();
-
         response.setFacturas(facturas);
         response.setUltimaPagina(ultimaPagina);
         response.setPage(page);
