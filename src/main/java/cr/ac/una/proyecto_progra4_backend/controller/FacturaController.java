@@ -1,6 +1,4 @@
 package cr.ac.una.proyecto_progra4_backend.controller;
-
-import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +74,4 @@ public class FacturaController {
         }
         return ResponseEntity.ok(delete);
     }
-
-   
 }
