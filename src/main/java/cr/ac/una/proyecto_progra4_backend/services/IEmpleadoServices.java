@@ -12,8 +12,8 @@ import java.util.List;
  * @author kinco
  */
 public interface IEmpleadoServices {
-    
-        public String agregar(Empleado empleado);
+
+    public String agregar(Empleado empleado);
 
     public List<Empleado> getEmpleados();
 
@@ -28,7 +28,7 @@ public interface IEmpleadoServices {
     public Empleado getEmpleadoPorTelefono(String telefono);
 
     public List<Empleado> obtenerRegistrosPaginados(int numeroPagina, int tamanoPagina);
-    
-     public String actualizarEmpleado(Empleado empleadoActualizado);
+
+    public String actualizarEmpleado(Empleado empleadoActualizado);
 
 }

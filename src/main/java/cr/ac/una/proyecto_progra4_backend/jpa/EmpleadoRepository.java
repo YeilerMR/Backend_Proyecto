@@ -12,14 +12,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
 /**
  *
  * @author kinco
  */
 @Repository
 public interface EmpleadoRepository extends JpaRepository<Empleado, Integer> {
-    
-        @Query("SELECT c FROM Empleado c WHERE c.usuario.credencial = 1")
+
+    @Query("SELECT c FROM Empleado c WHERE c.usuario.credencial = 1")
     List<Empleado> getEmpleados();
 
     @Query("SELECT c FROM Empleado c WHERE c.usuario.credencial = 1")
@@ -33,6 +34,5 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Integer> {
 
     @Query("SELECT c FROM Empleado c WHERE c.usuario.telefono = :telefono")
     Optional<Empleado> findByTelefono(String telefono);
-
 
 }
