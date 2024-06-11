@@ -36,6 +36,11 @@ public class FacturaController {
         response.setUltimaPagina(ultimaPagina);
         response.setPage(page);
         response.setPageSize(pageSize);
+        System.out.println("=======================================");
+        System.out.println();
+        System.out.println("         Listar api");
+        System.out.println();
+        System.out.println("========================================");
 
         return ResponseEntity.ok(response);
     }

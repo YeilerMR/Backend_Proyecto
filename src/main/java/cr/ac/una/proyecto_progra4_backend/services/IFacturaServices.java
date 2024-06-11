@@ -18,7 +18,7 @@ public interface IFacturaServices {
     
     public boolean verificar_codigo(String codigo, int id, boolean edit);
     
-    public LinkedList<Factura> ObtenerRegistrosPaginados(int numeroPagina, int tamanoPagina, List<Factura> facturas);
+    public List<Factura> ObtenerRegistrosPaginados(int numeroPagina, int tamanoPagina, List<Factura> facturas);
 
     public Factura getFacturaById(int id);
 }

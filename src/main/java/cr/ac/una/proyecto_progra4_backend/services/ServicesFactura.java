@@ -1,5 +1,6 @@
 package cr.ac.una.proyecto_progra4_backend.services;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -94,8 +95,8 @@ public class ServicesFactura implements IFacturaServices {
     }
 
     @Override
-    public LinkedList<Factura> ObtenerRegistrosPaginados(int numeroPagina, int tamanoPagina, List<Factura> facturas) {
-        LinkedList<Factura> registrosPagina = new LinkedList<>();
+    public List<Factura> ObtenerRegistrosPaginados(int numeroPagina, int tamanoPagina, List<Factura> facturas) {
+        List<Factura> registrosPagina = new ArrayList<>();
         if (facturas != null) {
             int inicio = numeroPagina * tamanoPagina;
             int fin = Math.min(inicio + tamanoPagina, facturas.size());
