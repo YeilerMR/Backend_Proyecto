@@ -1,6 +1,5 @@
 package cr.ac.una.proyecto_progra4_backend.services;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import cr.ac.una.proyecto_progra4_backend.domain.Factura;

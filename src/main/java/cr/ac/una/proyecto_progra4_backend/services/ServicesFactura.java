@@ -1,11 +1,10 @@
 package cr.ac.una.proyecto_progra4_backend.services;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.dao.DataIntegrityViolationException;
