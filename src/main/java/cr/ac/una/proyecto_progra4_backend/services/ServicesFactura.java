@@ -54,25 +54,29 @@ public class ServicesFactura implements IFacturaServices {
     }
 
     @Override
-    public boolean Eliminar_factura(int id) {
+    public String Eliminar_factura(int id) {
         try {
             factRp.deleteById(id);
-            return true;
+            return "{\"success\": true, \"message\": \"¡Eliminacion exitosa!\"}";
         } catch (EmptyResultDataAccessException e) {
             // Manejo del caso cuando no se encuentra la factura
             System.out.println("No se encontró la factura con id: " + id);
+            return "{\"success\": false, \"message\": \"¡Factura inexistente!\"}";
         } catch (DataIntegrityViolationException e) {
             // Manejo de la violación de integridad referencial (foreign key constraint)
             System.out.println("No se puede eliminar la factura debido a una restricción de integridad referencial: "
                     + e.getMessage());
+            return "{\"success\": false, \"message\": \"¡Factura no eliminada, integridad referencial!\"}";
         } catch (PersistenceException e) {
             // Manejo general de otras excepciones de persistencia
             System.out.println("Error de persistencia al eliminar la factura: " + e.getMessage());
+            return "{\"success\": false, \"message\": \"¡Error de eliminacion!\"}";
         } catch (Exception e) {
             // Manejo de cualquier otra excepción
             System.out.println("Error inesperado al eliminar la factura: " + e.getMessage());
+            return "{\"success\": false, \"message\": \"¡Error de eliminacion!\"}";
         }
-        return false;
+        //return "{\"success\": false, \"message\": \"¡Error de eliminacion!\"}";
     }
 
     @Override

@@ -74,11 +74,11 @@ public class FacturaController {
         System.out.println();
         System.out.println("========================================");
 
-        String delete = "delete";
-        boolean eliminado = ifs.Eliminar_factura(id);
-        if(!eliminado){
-            delete ="nodelete";
-        }
-        return ResponseEntity.ok(delete);
+        // String delete = "delete";
+        // boolean eliminado = ifs.Eliminar_factura(id);
+        // if(!eliminado){
+        //     delete ="nodelete";
+        // }
+        return ResponseEntity.ok(ifs.Eliminar_factura(id));
     }
 }

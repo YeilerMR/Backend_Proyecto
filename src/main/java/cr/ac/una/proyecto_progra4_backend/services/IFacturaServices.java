@@ -13,7 +13,7 @@ public interface IFacturaServices {
     
     public List<Factura> getFacturas();
     
-    public boolean Eliminar_factura(int id);
+    public String Eliminar_factura(int id);
     
     public boolean verificar_codigo(String codigo, int id, boolean edit);
     
