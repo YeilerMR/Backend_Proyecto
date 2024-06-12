@@ -27,21 +27,15 @@ public class ProductoServices implements IProductoServices{
     ProductoRepository productoRep;
 
     @Override
-    public String agregarProductos(Producto producto) {
-        //boolean resultado= true;
+    public boolean agregarProductos(Producto producto) {
+        boolean resultado= true;
         try {
-           // productoRep.save(producto);
-            if (producto!= null) {
-                productoRep.save(producto);
-                
-            }
-            return "{\"success\": true, \"message\": \"¡Proveedor agregado exitosamente!\"}";
-        } catch (Exception e) {
-            Logger.getLogger(ProductoServices.class.getName()).log(Level.SEVERE,null,e);
-            //resultado=false;
-            return "{\"success\": false, \"message\": \"Error al guardar el proveedor: " + e.getMessage() + "\"}";
+            productoRep.save(producto);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductoServices.class.getName()).log(Level.SEVERE,null,ex);
+            resultado=false;
         }
-
+        return resultado;
     }
 
     @Override
@@ -105,5 +99,4 @@ public class ProductoServices implements IProductoServices{
         Page<Producto> paginaProductos = productoRep.findAll(PageRequest.of(numeroPagina, tamanoPagina));
         return paginaProductos.getContent();
     }
-    
 }

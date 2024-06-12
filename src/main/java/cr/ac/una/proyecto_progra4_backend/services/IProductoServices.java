@@ -11,9 +11,9 @@ import java.util.List;
  *
  * @author USUARIO
  */
-public interface IProductoServices {
-     //Agrega un producto a la base de datos
-    public String agregarProductos(Producto producto);
+public interface IProductoServices {   
+    //Agrega un producto a la base de datos
+    public boolean agregarProductos(Producto producto);
 
     //Devuelve una lista con todos los productos
     public List<Producto> getProductos();
