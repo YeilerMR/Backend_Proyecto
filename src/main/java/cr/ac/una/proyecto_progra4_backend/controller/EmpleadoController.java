@@ -47,12 +47,12 @@ public class EmpleadoController {
         System.out.println(empleado.getIdEmpleado());
         Empleado empleadoExistente = empleadoServices.getEmpleadoPorID(empleado.getIdEmpleado());
 
-        // Verificar si el cliente existe
+        // Verificar si el empleado existe
         if (empleadoExistente == null) {
             return ResponseEntity.badRequest().body("{\"success\": false, \"message\": \"El empleado no existe\"}");
         }
 
-        // Actualizar los datos del cliente existente con los datos recibidos
+        // Actualizar los datos del empleado existente con los datos recibidos
         empleadoExistente.getUsuario().setNombre(empleado.getUsuario().getNombre());
         empleadoExistente.getUsuario().setApellidos(empleado.getUsuario().getApellidos());
         empleadoExistente.getUsuario().setEmail(empleado.getUsuario().getEmail());
@@ -60,7 +60,7 @@ public class EmpleadoController {
         empleadoExistente.getUsuario().setCedula(empleado.getUsuario().getCedula());
         empleadoExistente.getUsuario().setTelefono(empleado.getUsuario().getTelefono());
 
-        // Verificar si algún otro cliente tiene los mismos datos
+        // Verificar si algún otro empleado tiene los mismos datos
         Empleado empleadoExistenteCedula = empleadoServices.getEmpleadoPorCedula(empleado.getUsuario().getCedula());
         Empleado empleadoExistenteEmail = empleadoServices.getEmpleadoPorEmail(empleado.getUsuario().getEmail());
         Empleado empleadoExistenteTelefono = empleadoServices.getEmpleadoPorTelefono(empleado.getUsuario().getTelefono());
@@ -80,7 +80,7 @@ public class EmpleadoController {
         }else{
             return ResponseEntity.ok().body("{\"success\": false, \"message\": \"El empleado no se pudo actualizar\"}");
         }
-        // Guardar los cambios en el cliente
+        // Guardar los cambios en el empleado
            
         
     }

@@ -60,20 +60,20 @@ public class EmpleadoServices implements IEmpleadoServices{
     @Transactional
     public String eliminar(int idEmpleado) {
         try {
-            // Buscar el cliente por su ID
+            // Buscar el empleado por su ID
             Optional<Empleado> empleadoOptional = empleadoRepo.findById(idEmpleado);
 
-            // Verificar si el cliente existe
+            // Verificar si el empleado existe
             if (empleadoOptional.isPresent()) {
                 Empleado empleado = empleadoOptional.get();
 
-                // Obtener el usuario asociado al cliente
+                // Obtener el usuario asociado al empleado
                 Usuario usuario = empleado.getUsuario();
 
                 // Eliminar el usuario
                 userServices.eliminar(usuario.getId());
 
-                // Eliminar el cliente
+                // Eliminar el empleado
                 empleadoRepo.delete(empleado);
 
                 return "{\"success\": true, \"message\": \"¡Empleado eliminado exitosamente!\"}";
